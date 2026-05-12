@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
   `);
 });
 */
-// app.use('/',         productRoutes);
+app.use('/',         productRoutes);
 app.use('/cart',     cartRoutes);
 app.use('/checkout', checkoutRoutes);
 
