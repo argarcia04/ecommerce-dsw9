@@ -1,0 +1,85 @@
+<h2 class="section-title">Finalizar <span>Compra</span></h2>
+<div class="row g-4">
+  <div class="col-lg-8">
+    <div class="checkout-card card">
+      <div class="card-header">
+        <i class="bi bi-geo-alt me-2"></i> Datos de Envío
+      </div>
+      <div class="card-body p-4">
+        <form id="checkout-form" action="/checkout/process" method="POST">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Nombre *</label>
+              <input type="text" class="form-control" name="firstName" required
+                     placeholder="Juan">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Apellido *</label>
+              <input type="text" class="form-control" name="lastName" required
+                     placeholder="Pérez">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email *</label>
+              <input type="email" class="form-control" name="email" required
+                     placeholder="juan@email.com">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Teléfono *</label>
+              <input type="tel" class="form-control" name="phone" id="phone" required
+                     placeholder="6000-0000">
+              <div class="invalid-feedback">Ingresa un teléfono válido (8 dígitos).</div>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Dirección *</label>
+              <input type="text" class="form-control" name="address" required
+                     placeholder="Calle / Ave, Edificio, Piso">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Ciudad *</label>
+              <input type="text" class="form-control" name="city" required
+                     placeholder="Ciudad de Panamá">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Provincia *</label>
+              <select class="form-select" name="province" required>
+                <option value="">Seleccionar...</option>
+                <option>Panamá</option><option>Panamá Oeste</option>
+                <option>Colón</option><option>Chiriquí</option>
+                <option>Herrera</option><option>Los Santos</option>
+                <option>Veraguas</option><option>Coclé</option>
+                <option>Bocas del Toro</option><option>Darién</option>
+              </select>
+            </div>
+          </div>
+                    <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-primary btn-lg">
+              <i class="bi bi-lock me-2"></i> Continuar al pago
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar: Resumen del pedido -->
+  <div class="col-lg-4">
+    <div class="order-summary">
+      <h5><i class="bi bi-receipt me-2"></i>Resumen del Pedido</h5>
+      <ul class="list-group">
+        <% for (let item of cart.items) { %>
+          <li class="list-group-item d-flex justify-content-between">
+            <div>
+              <div class="fw-semibold"><%= item.product.name %></div>
+              <small style="opacity:.6">x<%= item.quantity %></small>
+            </div>
+            <span>$<%= (item.product.price * item.quantity).toFixed(2) %></span>
+          </li>
+        <% } %>
+      </ul>
+      <div class="total-line d-flex justify-content-between">
+        <span>Total</span>
+        <span>$<%= parseFloat(cart.totalPrice).toFixed(2) %></span>
+      </div>
+    </div>
+  </div>
+</div>
