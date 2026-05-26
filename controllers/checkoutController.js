@@ -40,11 +40,13 @@ const checkoutController = {
         city:      req.body.city,      province:  req.body.province,
         zip:       req.body.zip || '', phone:     req.body.phone,
         total:     cart.totalPrice,    status:    'pending'
+        user_id:   req.session.userId || null
       });
       for (const item of cart.items) {
         await OrderItem.create({
           OrderId:   order.id,
           ProductId: item.product.id,
+          store_id:   item.product.store_id || null,
           quantity:  item.quantity,
           price:     item.product.price
         });

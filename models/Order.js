@@ -6,6 +6,7 @@ const Order = sequelize.define('Order', {
   firstName: { type: DataTypes.STRING,         allowNull: false },
   lastName:  { type: DataTypes.STRING,         allowNull: false },
   email:     { type: DataTypes.STRING,         allowNull: false },
+  store_id: { type: DataTypes.INTEGER, allowNull: true, references: { model: 'stores', key: 'id' } }
   address:   { type: DataTypes.STRING,         allowNull: false },
   city:      { type: DataTypes.STRING,         allowNull: false },
   province:  { type: DataTypes.STRING,         allowNull: false },
