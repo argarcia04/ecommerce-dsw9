@@ -8,7 +8,7 @@ const Store = sequelize.define('Store', {
   description:   { type: DataTypes.TEXT },
   logo_url:      { type: DataTypes.STRING(255) },
   owner_name:    { type: DataTypes.STRING(100), allowNull: false },
-  store_id: { type: DataTypes.INTEGER, allowNull: true, references: { model: 'stores', key: 'id' } }
+  store_id: { type: DataTypes.INTEGER, allowNull: true, references: { model: 'stores', key: 'id' } },
   email:         { type: DataTypes.STRING(150), allowNull: false, unique: true },
   password_hash: { type: DataTypes.STRING(255), allowNull: false },
   paypal_email:  { type: DataTypes.STRING(150) },   // para recibir payouts
