@@ -39,8 +39,9 @@ const checkoutController = {
         email:     req.body.email,     address:   req.body.address,
         city:      req.body.city,      province:  req.body.province,
         zip:       req.body.zip || '', phone:     req.body.phone,
+        user_id:   req.session.userId || null,
         total:     cart.totalPrice,    status:    'pending'
-        user_id:   req.session.userId || null
+        
       });
       for (const item of cart.items) {
         await OrderItem.create({
