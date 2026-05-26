@@ -22,7 +22,7 @@ const cartController = {
       req.session.cart = cart;
       res.redirect('/cart');
     } catch (err) {
-      res.status(500).render('error', { title:'Error', message:'Error al agregar al carrito' });
+      res.status(500).render('error', { title:'Error', message:'Error al agregar al carrito' });git
     }
   },
   updateCartItem: (req, res) => {
