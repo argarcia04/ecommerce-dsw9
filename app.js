@@ -7,31 +7,35 @@ const ejsLayouts   = require('express-ejs-layouts');
 const sequelize    = require('./config/database');
 const { Product, Order, OrderItem } = require('./models');
 
+const customerRoutes = require('./routes/customer');
 const productRoutes  = require('./routes/products');
 const cartRoutes     = require('./routes/cart');
 const checkoutRoutes = require('./routes/checkout');
 const storeAuthRoutes = require('./routes/storeAuth');
 const { attachLocals } = require('./middleware/authMiddleware');
-
+const storeAdminRoutes = require('./routes/storeAdmin');
 const app  = express();
 const port = process.env.PORT || 3000;
 const userAuthRoutes = require('./routes/userAuth');
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-app.set('layout', 'layout');        // usa views/layout.ejs como plantilla base
-app.use(ejsLayouts);                // activa el sistema de layouts
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(cookieParser());
 app.use(session({
   secret:            process.env.SESSION_SECRET || 'dev-secret',
   resave:            false,
   saveUninitialized: false,
   cookie: { maxAge: 3600000 }
 }));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.set('layout', 'layout');        // usa views/layout.ejs como plantilla base
+app.use(ejsLayouts);                // activa el sistema de layouts
+app.use('/store-admin', storeAdminRoutes);
+app.use(express.json());
+app.use('/customer', customerRoutes);
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
+
 app.use('/user', userAuthRoutes);
 app.use(attachLocals);
 app.use(['/store/login', '/store/register',

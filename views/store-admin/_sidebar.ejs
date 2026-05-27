@@ -1,0 +1,28 @@
+<aside class="admin-sidebar">
+  <div class="store-brand">
+    <i class="bi bi-shop-window me-2"></i>
+    <span><%= (typeof store !== 'undefined' ? store : storeSession).name %></span>
+  </div>
+  <nav>
+    <a href="/store-admin/dashboard" class="<%= page==='dashboard'?'active':'' %>">
+      <i class="bi bi-grid"></i> Dashboard
+    </a>
+    <a href="/store-admin/products" class="<%= page==='products'?'active':'' %>">
+      <i class="bi bi-box-seam"></i> Productos
+    </a>
+    <a href="/store-admin/orders" class="<%= page==='orders'?'active':'' %>">
+      <i class="bi bi-receipt"></i> Pedidos
+    </a>
+    <a href="/store-admin/payout" class="<%= page==='payout'?'active':'' %>">
+      <i class="bi bi-send"></i> Cobrar (PayPal)
+    </a>
+    <a href="/store-admin/settings" class="<%= page==='settings'?'active':'' %>">
+      <i class="bi bi-gear"></i> Configuración
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <form method="POST" action="/store/logout">
+      <button type="submit"><i class="bi bi-box-arrow-left me-2"></i>Cerrar sesión</button>
+    </form>
+  </div>
+</aside>
