@@ -1,0 +1,203 @@
+:root {
+  --primary:   #0f172a;
+  --accent:    #6366f1;
+  --accent-dk: #4f46e5;
+  --success:   #10b981;
+  --danger:    #ef4444;
+  --warning:   #f59e0b;
+  --text:      #1e293b;
+  --muted:     #64748b;
+  --bg:        #f1f5f9;
+  --card:      #ffffff;
+  --border:    #e2e8f0;
+  --sidebar-w: 240px;
+  --radius:    10px;
+  --shadow:    0 2px 16px rgba(0,0,0,.07);
+}
+
+/* ── Reset base ──────────────────────────────────────────────── */
+body {
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.6;
+}
+
+/* ── Layout de admin (sidebar + contenido) ───────────────────── */
+.admin-wrap   { display: flex; min-height: 100vh; }
+.admin-sidebar {
+  width: var(--sidebar-w); min-width: var(--sidebar-w);
+  background: var(--primary); display: flex; flex-direction: column;
+  position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto;
+  z-index: 100;
+}
+.admin-sidebar .store-brand {
+  padding: 22px 20px; font-weight: 800; font-size: 1.05rem;
+  color: #fff; border-bottom: 1px solid rgba(255,255,255,.08);
+  letter-spacing: -.2px;
+}
+.admin-sidebar .store-brand span { color: var(--accent); }
+.admin-sidebar nav { padding: 12px 0; flex: 1; }
+.admin-sidebar nav a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 20px; color: rgba(255,255,255,.65);
+  font-size: .9rem; font-weight: 500; text-decoration: none;
+  transition: all .15s; border-left: 3px solid transparent;
+}
+.admin-sidebar nav a:hover  {
+  color: #fff; background: rgba(255,255,255,.06);
+  border-left-color: rgba(255,255,255,.2);
+}
+.admin-sidebar nav a.active {
+  color: #fff; background: rgba(99,102,241,.18);
+  border-left-color: var(--accent);
+}
+.admin-sidebar .sidebar-footer {
+  padding: 16px 20px; border-top: 1px solid rgba(255,255,255,.08);
+}
+.admin-sidebar .sidebar-footer form button {
+  background: none; border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.6); border-radius: 8px;
+  padding: 7px 16px; font-size: .85rem; width: 100%; cursor: pointer;
+  transition: all .2s;
+}
+.admin-sidebar .sidebar-footer form button:hover {
+  border-color: var(--danger); color: #fca5a5;
+}
+
+/* ── Contenido principal ─────────────────────────────────────── */
+.admin-content {
+  margin-left: var(--sidebar-w); flex: 1;
+  padding: 32px 36px; min-height: 100vh;
+}
+
+/* ── Topbar de admin ─────────────────────────────────────────── */
+.admin-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 28px;
+}
+.admin-topbar h1 {
+  font-size: 1.5rem; font-weight: 800; letter-spacing: -.3px; margin: 0;
+}
+.admin-topbar .breadcrumb { background: none; padding: 0; margin: 0; font-size: .85rem; }
+
+/* ── Stat cards ──────────────────────────────────────────────── */
+.stat-card {
+  background: var(--card); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 22px 24px;
+  border: 1px solid var(--border);
+}
+.stat-card .stat-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; margin-bottom: 14px;
+}
+.stat-card .stat-value {
+  font-size: 1.9rem; font-weight: 800; letter-spacing: -.5px;
+  display: block; line-height: 1;
+}
+.stat-card .stat-label {
+  font-size: .82rem; color: var(--muted); font-weight: 500;
+  text-transform: uppercase; letter-spacing: .05em; margin-top: 4px;
+  display: block;
+}
+
+/* ── Admin card (tablas, formularios) ────────────────────────── */
+.admin-card {
+  background: var(--card); border-radius: var(--radius);
+  box-shadow: var(--shadow); border: 1px solid var(--border);
+  overflow: hidden;
+}
+.admin-card-header {
+  padding: 16px 20px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.admin-card-header h5 { font-weight: 700; margin: 0; font-size: 1rem; }
+.admin-card-body { padding: 20px; }
+
+/* ── Tabla de admin ──────────────────────────────────────────── */
+.admin-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.admin-table thead th {
+  background: var(--bg); padding: 10px 16px; text-align: left;
+  font-weight: 700; font-size: .78rem; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--muted); border-bottom: 1px solid var(--border);
+}
+.admin-table tbody td {
+  padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: middle;
+}
+.admin-table tbody tr:last-child td { border-bottom: none; }
+.admin-table tbody tr:hover { background: #f8fafc; }
+
+/* ── Badges de estado ────────────────────────────────────────── */
+.status-badge {
+  display: inline-block; padding: 3px 10px; border-radius: 20px;
+  font-size: .75rem; font-weight: 700;
+}
+.status-paid      { background: #ecfdf5; color: #065f46; }
+.status-pending   { background: #fffbeb; color: #92400e; }
+.status-failed    { background: #fef2f2; color: #991b1b; }
+.status-cancelled { background: #f1f5f9; color: #475569; }
+
+/* ── Formularios de admin ────────────────────────────────────── */
+.form-control, .form-select {
+  border-radius: 8px; border: 1.5px solid var(--border);
+  padding: 9px 13px; font-size: .9rem; transition: border-color .2s;
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--accent); box-shadow: 0 0 0 3px rgba(99,102,241,.12);
+  outline: none;
+}
+.form-label { font-weight: 600; font-size: .85rem; margin-bottom: 5px; color: var(--text); }
+
+/* ── Botones de admin ────────────────────────────────────────── */
+.btn { border-radius: 8px; font-weight: 600; font-size: .875rem;
+       padding: 8px 18px; border: none; cursor: pointer; transition: all .2s; }
+.btn-primary   { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-dk); transform: translateY(-1px); }
+.btn-danger    { background: var(--danger); color: #fff; }
+.btn-danger:hover { opacity: .88; }
+.btn-outline   { background: none; border: 1.5px solid var(--border); color: var(--text); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-success   { background: var(--success); color: #fff; }
+.btn-sm        { padding: 5px 12px; font-size: .8rem; }
+.btn-lg        { padding: 12px 28px; font-size: 1rem; }
+
+/* ── Balance / payout card ───────────────────────────────────── */
+.balance-card {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dk));
+  color: #fff; border-radius: var(--radius); padding: 28px 28px 24px;
+}
+.balance-card .balance-amount {
+  font-size: 2.4rem; font-weight: 800; letter-spacing: -.5px;
+  display: block; line-height: 1; margin: 6px 0 4px;
+}
+.balance-card .balance-label { font-size: .85rem; opacity: .8; font-weight: 500; }
+.balance-card .balance-sub   { font-size: .8rem; opacity: .65; margin-top: 6px; }
+
+/* ── Auth pages (login / register) ──────────────────────────── */
+.auth-page {
+  min-height: 100vh; background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  padding: 32px 16px;
+}
+.auth-card {
+  background: var(--card); border-radius: 16px; box-shadow: var(--shadow);
+  padding: 40px 36px; width: 100%; max-width: 420px;
+  border: 1px solid var(--border);
+}
+.auth-card h2 { font-weight: 800; font-size: 1.5rem; margin-bottom: 6px; }
+.auth-card .auth-sub { color: var(--muted); font-size: .9rem; margin-bottom: 28px; }
+.auth-card .alert {
+  border-radius: 8px; padding: 10px 14px; font-size: .875rem;
+  font-weight: 500; margin-bottom: 18px; border: none;
+}
+.auth-card .alert-error { background: #fef2f2; color: #991b1b; }
+.auth-card .auth-footer {
+  text-align: center; margin-top: 22px; font-size: .875rem; color: var(--muted);
+}
+.auth-card .auth-footer a { color: var(--accent); font-weight: 600; }
+
+/* ── Responsive sidebar ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .admin-sidebar { transform: translateX(-100%); transition: transform .3s; }
+  .admin-sidebar.open { transform: none; }
+  .admin-content { margin-left: 0; padding: 20px 16px; }
+}

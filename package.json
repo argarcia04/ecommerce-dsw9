@@ -19,6 +19,7 @@
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.19.0",
     "mysql2": "^3.22.2",
-    "sequelize": "^6.37.8"
+    "sequelize": "^6.37.8",
+    "node-fetch": "^3.0.0" 
   }
 }
