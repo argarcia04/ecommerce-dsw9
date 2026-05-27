@@ -11,6 +11,7 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "@paypal/payouts-sdk": "^1.1.1",
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "dotenv": "^17.4.2",
@@ -19,7 +20,7 @@
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.19.0",
     "mysql2": "^3.22.2",
-    "sequelize": "^6.37.8",
-    "node-fetch": "^3.0.0" 
+    "node-fetch": "^3.0.0",
+    "sequelize": "^6.37.8"
   }
 }
